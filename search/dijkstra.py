@@ -40,17 +40,21 @@ def find_lowest_cost_node(costs):
     return lowest_cost_node
 
 
-node = find_lowest_cost_node(costs)
-while node is not None:
-    cost = costs[node]
-    neighbors = graph[node]
-    for n in neighbors.keys():
-        new_cost = cost + neighbors[n]
-        if costs[n] > new_cost:
-            costs[n] = new_cost
-            parents[n] = node
-    processed.add(node)
+def dijkstra_algorithm(graph, costs, parents):
     node = find_lowest_cost_node(costs)
+    while node is not None:
+        cost = costs[node]
+        neighbors = graph[node]
+        for n in neighbors.keys():
+            new_cost = cost + neighbors[n]
+            if costs[n] > new_cost:
+                costs[n] = new_cost
+                parents[n] = node
+        processed.add(node)
+        node = find_lowest_cost_node(costs)
+    final_way = show_final_way(parents)
+    return final_way
+
 
 def show_final_way(parents):
     finish = parents['finish']
@@ -63,6 +67,5 @@ def show_final_way(parents):
         finish = parents[finish]
     return final_way[::-1]
 
-print(parents)
-print(f'{costs=}')
-print(show_final_way(parents))
+
+print(dijkstra_algorithm(graph, costs, parents))
