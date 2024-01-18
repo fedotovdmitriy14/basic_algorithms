@@ -43,6 +43,7 @@ def find_lowest_cost_node(costs):
 def dijkstra_algorithm(graph, costs, parents):
     node = find_lowest_cost_node(costs)
     while node is not None:
+        print(node)
         cost = costs[node]
         neighbors = graph[node]
         for n in neighbors.keys():
