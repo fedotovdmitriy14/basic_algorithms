@@ -37,7 +37,7 @@ class DynamicHashtable:
 
     def resize(self, new_size):
         temp = DynamicHashtable(new_size)  # временная таблица
-        for bucket in self.table:  #  обязательно нужно заполнить новую таблицу так, а не скопировать (ведь хэш поменялся)
+        for bucket in self.table:  # обязательно нужно заполнить новую таблицу так, а не скопировать (ведь хэш поменялся)
             for key, value in bucket:
                 temp.put(key, value)
         self.table, self.m = temp.table, temp.m
