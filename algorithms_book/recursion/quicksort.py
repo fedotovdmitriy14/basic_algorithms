@@ -1,4 +1,4 @@
-def quicksort(array: list):
+def quicksort(array: list, reverse: bool =False):
     if len(array) == 0:
         return array
 
@@ -9,11 +9,17 @@ def quicksort(array: list):
     mid = [el for el in array if el == pivot]
     # print(f'{pivot=}, {lower=}, {higher=}, {mid=}')
 
+    if reverse:
+        return (
+                quicksort(higher, reverse) +
+                mid +
+                quicksort(lower, reverse)
+        )
     return (
-        quicksort(lower) +
+        quicksort(lower, reverse) +
         mid +
-        quicksort(higher)
+        quicksort(higher, reverse)
     )
 
 
-print(quicksort([9, 7, 1, 5, 66, 0, 88]))
+print(quicksort([9, 7, 1, 5, 66, 0, 88], reverse=True))
