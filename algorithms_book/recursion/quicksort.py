@@ -1,4 +1,4 @@
-def quicksort(array: list, reverse: bool =False):
+def quicksort(array: list, reverse: bool = False):
     if len(array) == 0:
         return array
 
