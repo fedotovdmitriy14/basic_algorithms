@@ -75,8 +75,6 @@ class BinaryTree:
         if node is None:
             return
 
-        print(f'{node.value=}')
-
         for value in self._inorder(node.left):
             yield value
 
@@ -84,6 +82,15 @@ class BinaryTree:
 
         for value in self._inorder(node.right):
             yield value
+
+    def find_max_path_sum(self, root: BinaryNode):
+        """Находит значение максимального пути."""
+        if root == None:
+            return 0
+
+        max_path_left = self.find_max_path_sum(root.left)  # максимальный путь для левого дерева
+        max_path_right = self.find_max_path_sum(root.right)  # максимальный путь для правого дерева
+        return max(max_path_left, max_path_right) + root.value  # максимальный путь (левый или правый) + текущая вершина
 
 
 # Test data for insertion
@@ -101,5 +108,7 @@ for value in insertion_data:
     tree.insert(value)
 
 
-for value in tree:
-    print(value)
+# for value in tree:
+#     print(value)
+
+print(tree.find_max_path_sum(tree.root))
